@@ -12,22 +12,10 @@ function App() {
     getMovies(FEATURED_API + 1);
   }, []);
 
-  const getMovies = (API, pager = false) => {
+  const getMovies = (API) => {
     fetch(API)
     .then((res) => res.json())
-    .then((data) => {
-      //console.log(data);
-      if(pager === true) {
-        console.log(data.results);
-        //return data.results;
-        //setNextMovies(prevState => {return data.results});
-        setTimeout(() => {
-          setMovies(prevState => ([...prevState, ...data.results]));
-        }, 2000);
-      } else {
-        setMovies(data.results);
-      }
-    });
+    .then((data) => setMovies(data.results));
   }
 
   return (
